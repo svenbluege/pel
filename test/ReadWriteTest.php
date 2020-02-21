@@ -27,6 +27,7 @@ namespace Pel\Test;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelEntryByte;
 use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelTag;
 use lsolesen\pel\PelTiff;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelJpeg;
@@ -206,5 +207,40 @@ class WriteEntryTest extends TestCase
                 ],
             ],
         ];
+    }
+
+    /**
+     * Tests loading and writing back a TIFF image file.
+     */
+    public function testTiffLoadSave()
+    {
+        $file_uri = dirname(__FILE__) . '/images/sample-1.tiff';
+
+        $data = @exif_read_data($file_uri);
+        $this->assertEquals(1, $data['Orientation']);
+        $this->assertEquals(2, $data['PhotometricInterpretation']);
+
+        $tiff = new PelTiff($file_uri);
+        $ifd = $tiff->getIfd();
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd);
+        $orientation = $ifd->getEntry(PelTag::ORIENTATION);
+        $this->assertEquals(1, $orientation->getValue());
+        $photometric_interpretation = $ifd->getEntry(PelTag::PHOTOMETRIC_INTERPRETATION);
+        $this->assertEquals(2, $photometric_interpretation->getValue());
+        $bits_per_sample = $ifd->getEntry(PelTag::BITS_PER_SAMPLE);
+        $this->assertEquals([8, 8, 8, 8], $bits_per_sample->getValue());
+
+        $orientation->setValue(4);
+        $photometric_interpretation->setValue(4);
+        $bits_per_sample->setValueArray([7, 6, 5, 4]);
+
+        $out_uri = dirname(__FILE__) . '/images/output.sample-1.tiff';
+        $tiff->saveFile($out_uri);
+
+        $data_reload = @exif_read_data($out_uri);
+        $this->assertEquals(4, $data_reload['Orientation']);
+        $this->assertEquals(4, $data_reload['PhotometricInterpretation']);
+        $this->assertEquals([7, 6, 5, 4], $data_reload['BitsPerSample']);
+        unlink($out_uri);
     }
 }

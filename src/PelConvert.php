@@ -85,6 +85,10 @@ class PelConvert
      */
     public static function shortToBytes($value, $endian)
     {
+    	if ($value == null) {
+    		return 0;
+    	}
+    	
         if ($endian == self::LITTLE_ENDIAN) {
             return chr($value) . chr($value >> 8);
         } else {

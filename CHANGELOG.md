@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.9.20 - 2023-06-xx
+## 0.9.20 - 2023-06-20
 
 * Move package on Packagist to [fileeye/pel](https://packagist.org/packages/fileeye/pel)
 * Move main repository to [FileEye/pel](https://github.com/FileEye/pel)

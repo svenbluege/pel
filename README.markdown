@@ -2,7 +2,10 @@ This is a fork of the [pel/pel](https://github.com/pel/pel) repository.
 
 # PEL: PHP Exif Library
 
-[![Tests](https://github.com/FileEye/pel/actions/workflows/tests.yml/badge.svg)](https://github.com/FileEye/pel/actions/workflows/tests.yml) [![Latest Stable Version](https://poser.pugx.org/fileeye/pel/v/stable)](https://packagist.org/packages/fileeye/pel) [![Total Downloads](https://poser.pugx.org/fileeye/pel/downloads)](https://packagist.org/packages/fileeye/pel) [![License](https://poser.pugx.org/fileeye/pel/license)](https://packagist.org/packages/fileeye/pel)
+[![Tests](https://github.com/FileEye/pel/actions/workflows/tests.yml/badge.svg)](https://github.com/FileEye/pel/actions/workflows/tests.yml) [![Latest Stable Version](https://poser.pugx.org/fileeye/pel/v/stable)](https://packagist.org/packages/fileeye/pel) 
+[![codecov](https://codecov.io/gh/FileEye/pel/graph/badge.svg?token=XlF4fOHAl1)](https://codecov.io/gh/FileEye/pel)
+[![Total Downloads](https://poser.pugx.org/fileeye/pel/downloads)](https://packagist.org/packages/fileeye/pel) 
+[![License](https://poser.pugx.org/fileeye/pel/license)](https://packagist.org/packages/fileeye/pel)
 
 README file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.

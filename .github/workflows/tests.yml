@@ -27,10 +27,10 @@ jobs:
     steps:
 
         - name: Checkout
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
 
         - name: Install PHP
-          uses: "shivammathur/setup-php@v2"
+          uses: shivammathur/setup-php@v2
           with:
             php-version: "${{ matrix.php-version }}"
             coverage: "pcov"
@@ -43,7 +43,7 @@ jobs:
           run: ./vendor/bin/phpunit --color=always --coverage-clover=coverage.xml ./test
 
         - name: Send code coverage report to Codecov.io
-          uses: codecov/codecov-action@v3
+          uses: codecov/codecov-action@v4
           with:
             files: coverage.xml
             

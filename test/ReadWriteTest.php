@@ -37,15 +37,12 @@ use lsolesen\pel\PelEntrySShort;
 use lsolesen\pel\PelEntryLong;
 use lsolesen\pel\PelEntrySLong;
 use lsolesen\pel\PelEntryAscii;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ReadWriteTest extends TestCase
 {
 
-    /**
-     *
-     * {@inheritdoc}
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -53,10 +50,10 @@ class ReadWriteTest extends TestCase
     }
 
     /**
-     *
      * @dataProvider writeEntryProvider
      */
-    public function testWriteRead(array $entries)
+    #[DataProvider('writeEntryProvider')]
+    public function testWriteRead(array $entries): void
     {
         $ifd = new PelIfd(PelIfd::IFD0);
         $this->assertTrue($ifd->isLastIfd());
@@ -122,7 +119,7 @@ class ReadWriteTest extends TestCase
         unlink('test-output.jpg');
     }
 
-    public function writeEntryProvider()
+    public static function writeEntryProvider()
     {
         return [
             'PEL Byte Read/Write Tests' => [
@@ -229,6 +226,7 @@ class ReadWriteTest extends TestCase
         $this->assertEquals(1, $orientation->getValue());
         $photometric_interpretation = $ifd->getEntry(PelTag::PHOTOMETRIC_INTERPRETATION);
         $this->assertEquals(2, $photometric_interpretation->getValue());
+        /** @var \lsolesen\pel\PelEntryShort $bits_per_sample */
         $bits_per_sample = $ifd->getEntry(PelTag::BITS_PER_SAMPLE);
         $this->assertEquals([
             8,

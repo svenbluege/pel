@@ -32,7 +32,7 @@ use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTag;
 use lsolesen\pel\PelTiff;
 
-class GH16Test extends TestCase
+class Gh16Test extends TestCase
 {
 
     protected $file;
@@ -55,25 +55,25 @@ class GH16Test extends TestCase
 
         $data = new PelDataWindow(file_get_contents($this->file));
 
-        if (PelJpeg::isValid($data)) {
-            $jpeg = new PelJpeg();
-            $jpeg->load($data);
-            $exif = $jpeg->getExif();
+        $this->assertTrue(PelJpeg::isValid($data));
 
-            if (null === $exif) {
-                $exif = new PelExif();
-                $jpeg->setExif($exif);
-                $tiff = new PelTiff();
-                $exif->setTiff($tiff);
-            }
+        $jpeg = new PelJpeg();
+        $jpeg->load($data);
+        $exif = $jpeg->getExif();
 
-            $tiff = $exif->getTiff();
+        if (null === $exif) {
+            $exif = new PelExif();
+            $jpeg->setExif($exif);
+            $tiff = new PelTiff();
+            $exif->setTiff($tiff);
+        }
 
-            $ifd0 = $tiff->getIfd();
-            if (null === $ifd0) {
-                $ifd0 = new PelIfd(PelIfd::IFD0);
-                $tiff->setIfd($ifd0);
-            }
+        $tiff = $exif->getTiff();
+
+        $ifd0 = $tiff->getIfd();
+        if (null === $ifd0) {
+            $ifd0 = new PelIfd(PelIfd::IFD0);
+            $tiff->setIfd($ifd0);
         }
         $ifd0->addEntry(new PelEntryWindowsString(PelTag::XP_SUBJECT, $subject));
 

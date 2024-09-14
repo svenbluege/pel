@@ -142,7 +142,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     const CANON_CUSTOM_FUNCTIONS = 11;
 
-    const TYPE_NAMES = [
+    private const TYPE_NAMES = [
         self::IFD0 => '0',
         self::IFD1 => '1',
         self::EXIF => 'Exif',
@@ -157,7 +157,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         self::CANON_CUSTOM_FUNCTIONS => 'Canon Custom Functions'
     ];
 
-    const VALID_TAGS = [
+    private const VALID_TAGS = [
         self::IFD0 => [
             PelTag::IMAGE_WIDTH,
             PelTag::IMAGE_LENGTH,

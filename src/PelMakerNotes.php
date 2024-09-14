@@ -50,8 +50,6 @@ abstract class PelMakerNotes
     protected $parent;
 
     protected $data;
-    
-    protected $size;
 
     protected $size;
 

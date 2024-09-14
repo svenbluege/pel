@@ -58,7 +58,7 @@ namespace lsolesen\pel;
 class PelEntryShort extends PelEntryNumber
 {
 
-    const IFD_TYPE_TRANSLATIONS = [
+    private const IFD_TYPE_TRANSLATIONS = [
         PelIfd::CANON_SHOT_INFO => [
             PelTag::CANON_SI_WHITE_BALANCE => [
                 0 => 'Auto',
@@ -135,7 +135,7 @@ class PelEntryShort extends PelEntryNumber
         ]
     ];
 
-    const PEL_TAG_TRANSLATIONS = [
+    private const PEL_TAG_TRANSLATIONS = [
         PelTag::METERING_MODE => [
             0 => 'Unknown',
             1 => 'Average',

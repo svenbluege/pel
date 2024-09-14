@@ -47,7 +47,7 @@ namespace lsolesen\pel;
 class PelEntrySShort extends PelEntryNumber
 {
 
-    const TRANSLATIONS = [
+    private const TRANSLATIONS = [
         PelIfd::CANON_FILE_INFO => [
             PelTag::CANON_FI_BRACKET_MODE => [
                 0 => 'Off',
